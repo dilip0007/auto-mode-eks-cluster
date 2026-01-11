@@ -32,7 +32,10 @@ resource "aws_iam_role" "github_actions_role" {
         Condition = {
           StringLike = {
             # This locks access to ONLY your repository
-            "token.actions.githubusercontent.com:sub": "repo:dilip0007/microservices-demo:*"
+            "token.actions.githubusercontent.com:sub": [
+              "repo:dilip0007/microservices-demo:*",
+              "repo:dilip0007/auto-mode-eks-cluster:*"
+            ]
           }
           StringEquals = {
              "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
