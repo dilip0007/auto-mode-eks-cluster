@@ -7,19 +7,18 @@ terraform {
   backend "s3" {
     # REPLACE THIS with your unique bucket name!
     # Bucket must be created manually before running 'terraform init'
-    bucket         = "terraform-state-eks-auto-cluster-dilip" 
+    bucket         = "terraform-state-eks-auto-cluster-dilip-ni" 
     
     # The path to the state file inside the bucket
-    key            = "eks-auto-mode/terraform.tfstate"
+    key            = "eks-auto-module/terraform.tfstate"
     
     # AWS Region of the bucket
-    region         = "us-west-2"
+    region         = "us-east-1"
     
     # Encrypt state at rest
     encrypt        = true
     
-    # DynamoDB table for locking (must be created manually)
-    # Partition key must be "LockID"
-    dynamodb_table = "terraform-locks"
+    # Use native state locking (modern replacement for dynamodb_table)
+    use_lockfile   = true
   }
 }

@@ -1,0 +1,37 @@
+
+---
+apiVersion: eks.amazonaws.com/v1
+kind: NodeClass
+metadata:
+  name: custom-networking
+spec:
+  role: ${REPLACEME_NODE_ROLE_NAME}
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: ${REPLACEME_CLUSTER_NAME}
+  securityGroupSelectorTerms:
+    - id: ${REPLACEME_SECURITY_GROUP_ID}
+  tags:
+    Project: EKS-Auto-Learning
+    Owner: Dilip
+    CostCenter: Learning-02
+
+---
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: cost-optimized
+spec:
+  template:
+    spec:
+      nodeClassRef:
+        group: eks.amazonaws.com
+        kind: NodeClass
+        name: custom-networking
+      requirements:
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["spot"]
+        - key: "kubernetes.io/arch"
+          operator: In
+          values: ["arm64", "amd64"]

@@ -6,7 +6,7 @@
 .DSA_Store
 .idea/
 .vscode/
-
+tfplan
 # Keep tfvars for this learning repo as it has no secrets, 
 # but usually you might gitignore it in production if it had keys.
 # *.tfvars
