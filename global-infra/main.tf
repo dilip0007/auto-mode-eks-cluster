@@ -80,6 +80,33 @@ resource "aws_iam_role_policy" "github_actions_ecr_policy" {
           "ecr:CreateRepository"
         ]
         Resource = "*"
+      },
+      # Add S3 permissions for Terraform State
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:ListBucket",
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:DeleteObject"
+        ]
+        Resource = [
+          "arn:aws:s3:::terraform-state-eks-auto-cluster-dilip-ni",
+          "arn:aws:s3:::terraform-state-eks-auto-cluster-dilip-ni/*"
+        ]
+      },
+      # Add EC2/EKS/IAM permissions needed to CREATE the cluster
+      {
+        Effect = "Allow"
+        Action = [
+            "ec2:*",
+            "eks:*",
+            "iam:*",
+            "kms:*",
+            "ssm:*",
+            "logs:*"
+        ]
+        Resource = "*"
       }
     ]
   })
