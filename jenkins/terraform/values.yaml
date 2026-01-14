@@ -1,0 +1,31 @@
+
+controller:
+  image: "jenkins/jenkins"
+  tag: "lts-jdk17"
+  storageClass: "ebs-sc"
+  serviceType: ClusterIP
+
+  ingress:
+    enabled: true
+    ingressClassName: alb 
+    annotations:
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/healthcheck-path: /login
+    hostName: jenkins.k8s.local
+
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "2Gi"
+    limits:
+      cpu: "2000m"
+      memory: "4Gi"
+      
+  JCasC:
+    defaultConfig: true
+    
+persistence:
+  enabled: true
+  size: "8Gi"
+  storageClass: "ebs-sc"
