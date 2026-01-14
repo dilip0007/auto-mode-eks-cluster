@@ -1,7 +1,11 @@
 
 controller:
-  image: "jenkins/jenkins"
-  tag: "lts-jdk17"
+  image:
+    registry: "docker.io"
+    repository: "jenkins/jenkins"
+    tag: "lts-jdk17"
+  # Explicitly setting these prevents the template error
+  imagePullPolicy: "Always"
   storageClass: "ebs-sc"
   serviceType: ClusterIP
 
