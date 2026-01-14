@@ -26,17 +26,7 @@ module "eks" {
   subnet_ids = module.vpc.private_subnets
 
   access_entries = {
-    dilip = {
-      principal_arn = "arn:aws:iam::173235558072:user/dilip"
-      policy_associations = {
-        admin = {
-          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-          access_scope = {
-            type = "cluster"
-          }
-        }
-      }
-    }
+
     admin_cli = {
       principal_arn = "arn:aws:iam::173235558072:user/admin-cli"
       policy_associations = {
