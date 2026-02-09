@@ -8,7 +8,6 @@ resource "kubernetes_ingress_class" "alb" {
   }
 
   spec {
-    # This refers to the AWS Load Balancer Controller (or EKS Auto Mode's built-in one)
-    controller = "ingress.k8s.aws/alb"
+    controller = "eks.amazonaws.com/alb"
   }
 }
