@@ -9,7 +9,7 @@ resource "helm_release" "jenkins" {
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"
-  version    = "5.1.4"
+  version    = "5.8.138"
   namespace  = kubernetes_namespace.jenkins.metadata[0].name
 
   wait    = false 
