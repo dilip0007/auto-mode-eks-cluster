@@ -16,12 +16,12 @@ controller:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/healthcheck-path: /login
-    hostName: jenkins.k8s.local
+    # hostName: jenkins.k8s.local
 
   resources:
     requests:
       cpu: "1000m"
-      memory: "2Gi"
+      memory: "4Gi"
     limits:
       cpu: "2000m"
       memory: "4Gi"
@@ -31,5 +31,5 @@ controller:
     
 persistence:
   enabled: true
-  size: "8Gi"
+  size: "10Gi"
   storageClass: "ebs-sc"
