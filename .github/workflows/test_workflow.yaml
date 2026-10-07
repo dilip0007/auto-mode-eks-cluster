@@ -1,7 +1,9 @@
 name: test_workflow
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - feature/eks-auto-module
     paths:
       - 'eks-auto-module-fresh/**'
   workflow_dispatch:
